@@ -359,12 +359,16 @@ h1 {
 }
 
 .player-list li::before {
-    content: "👤";
+    content: "";
+    width: 8px;
+    height: 8px;
+    background-color: #3498db;
+    border-radius: 50%;
     margin-right: 0.5rem;
 }
 
 .player-list li.host::before {
-    content: "👑";
+    background-color: #f1c40f;
 }
 
 .waiting-message {
@@ -436,12 +440,13 @@ h1 {
 }
 
 .wild-card::before {
-    content: "⚡";
+    content: "WILD";
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.8em;
+    font-size: 0.9em;
+    font-weight: bold;
     color: #fff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
     z-index: 1;
@@ -1125,9 +1130,11 @@ h1 {
 }
 
 .wild-card-prompt.kahoot-style .review-icon {
-    font-size: 4rem;
+    font-size: 1.5rem;
     margin-bottom: 1rem;
-    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .wild-card-prompt.kahoot-style .review-stats {
@@ -1153,6 +1160,11 @@ h1 {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
+}
+
+.wild-card-prompt.kahoot-style .reward-indicator {
+    font-weight: bold;
+    color: #ffd700;
 }
 
 .wild-card-prompt.kahoot-style .reward-star {
