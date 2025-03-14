@@ -4,22 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Impact Journey</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/tech-game-project/public/css/styles.css">
 </head>
 <body>
     <div class="game-container">
-        <h1>Tech Impact Journey</h1>
+        <h1>🎮 Tech Impact Journey 🚀</h1>
         
         <div id="name-input-form" class="name-input-form">
-            <h2>Enter Player Names</h2>
+            <h2>Ready to Play? 🎯</h2>
             <div id="player-inputs">
                 <div class="input-group">
                     <label for="player1-name">Player 1 Name:</label>
-                    <input type="text" id="player1-name" required>
+                    <input type="text" id="player1-name" required placeholder="Enter name...">
                 </div>
                 <div class="input-group">
                     <label for="player2-name">Player 2 Name:</label>
-                    <input type="text" id="player2-name" required>
+                    <input type="text" id="player2-name" required placeholder="Enter name...">
                 </div>
             </div>
             <select id="player-count" class="player-count-select">
@@ -27,13 +30,13 @@
                 <option value="3">3 Players</option>
                 <option value="4">4 Players</option>
             </select>
-            <button id="start-game" class="create-button">Start Game</button>
+            <button id="start-game" class="create-button">Start Game! 🎲</button>
         </div>
 
         <div id="game-content" class="game-content" style="display: none;">
             <div class="game-info">
-                <div id="current-player">Current Player: <span>Player 1</span></div>
-                <div id="turn-counter">Turn: <span>1</span></div>
+                <div id="current-player">Current Player: <span></span> 👉</div>
+                <div id="turn-counter">Turn: <span></span> 🔄</div>
             </div>
             
             <div class="game-board">
@@ -42,19 +45,19 @@
 
             <div class="player-controls">
                 <div id="player1" class="player">
-                    <h3>Player 1</h3>
+                    <h3>🎮 <span></span></h3>
                     <div class="player-position">Position: <span>0</span></div>
                 </div>
                 <div id="player2" class="player">
-                    <h3>Player 2</h3>
+                    <h3>🎮 <span></span></h3>
                     <div class="player-position">Position: <span>0</span></div>
                 </div>
                 <div id="player3" class="player" style="display: none;">
-                    <h3>Player 3</h3>
+                    <h3>🎮 <span></span></h3>
                     <div class="player-position">Position: <span>0</span></div>
                 </div>
                 <div id="player4" class="player" style="display: none;">
-                    <h3>Player 4</h3>
+                    <h3>🎮 <span></span></h3>
                     <div class="player-position">Position: <span>0</span></div>
                 </div>
             </div>
@@ -63,8 +66,11 @@
 
             <div id="question-modal" class="modal">
                 <div class="modal-content">
-                    <h2>Technology Question</h2>
-                    <p id="question-text"></p>
+                    <div class="question-header">
+                        <div class="difficulty-badge"></div>
+                        <div class="reward-badge"></div>
+                    </div>
+                    <div id="question-text" class="question-text"></div>
                     <div id="answer-options" class="answer-options"></div>
                 </div>
             </div>
