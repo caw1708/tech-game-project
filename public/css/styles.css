@@ -1,0 +1,1146 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f2f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+.game-container {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 1rem;
+}
+
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+}
+
+.name-input-form {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.name-input-form h2 {
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+.input-group {
+    margin: 1rem 0;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #2c3e50;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 0.5rem;
+    border: 2px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+.create-button {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.create-button:hover {
+    background-color: #219a52;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(39, 174, 96, 0.2);
+}
+
+.waiting-room {
+    background-color: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.waiting-room h2 {
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+}
+
+.game-code {
+    background-color: #f1f2f6;
+    padding: 1rem;
+    border-radius: 5px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #2c3e50;
+    margin: 1rem 0;
+    border: 2px dashed #3498db;
+    user-select: all;
+    cursor: pointer;
+}
+
+.game-code:hover {
+    background-color: #e8f4f8;
+}
+
+.player-list {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.player-list h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.player-list ul {
+    list-style: none;
+    padding: 0;
+}
+
+.player-list li {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.player-list li::before {
+    content: "👤";
+    margin-right: 0.5rem;
+}
+
+.player-list li.host::before {
+    content: "👑";
+}
+
+.waiting-message {
+    color: #7f8c8d;
+    font-style: italic;
+    margin-top: 1rem;
+}
+
+.start-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+    width: 100%;
+}
+
+.start-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.start-button:not(:disabled):hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(52, 152, 219, 0.2);
+}
+
+.game-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    color: #34495e;
+}
+
+.game-board {
+    background-color: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+}
+
+.board-grid {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    gap: 0.5rem;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.board-cell {
+    aspect-ratio: 1;
+    background-color: #e8f4f8;
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.board-cell:hover {
+    background-color: #d5e8f3;
+}
+
+.board-cell.player1 {
+    background-color: #3498db;
+    color: white;
+}
+
+.board-cell.player2 {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.board-cell.player3 {
+    background-color: #2ecc71;
+    color: white;
+}
+
+.board-cell.player4 {
+    background-color: #f1c40f;
+    color: white;
+}
+
+.board-cell.current-player {
+    animation: currentPlayerPulse 2s infinite;
+}
+
+@keyframes currentPlayerPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 235, 59, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 10px rgba(255, 235, 59, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 235, 59, 0);
+    }
+}
+
+.wild-card {
+    background: linear-gradient(45deg, #9c27b0, #673ab7) !important;
+    border: 3px solid #4a148c !important;
+    position: relative;
+    animation: wildCardPulse 2s infinite;
+    cursor: pointer;
+    overflow: hidden;
+    color: white !important;
+}
+
+.wild-card::before {
+    content: "⚡";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.8em;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 1;
+    pointer-events: none;
+}
+
+.wild-card::after {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+    transform: rotate(45deg);
+    animation: shine 3s infinite;
+    pointer-events: none;
+}
+
+.wild-card.active-wild-card {
+    animation: activeWildCard 1s infinite;
+    box-shadow: 0 0 20px rgba(255, 235, 59, 0.7);
+    border-color: #ffd700 !important;
+}
+
+@keyframes activeWildCard {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 235, 59, 0.7);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 30px rgba(255, 235, 59, 0.9);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 20px rgba(255, 235, 59, 0.7);
+    }
+}
+
+@keyframes wildCardPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(156, 39, 176, 0.7);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 15px 5px rgba(156, 39, 176, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(156, 39, 176, 0);
+    }
+}
+
+@keyframes shine {
+    0% { left: -50%; }
+    100% { left: 150%; }
+}
+
+.wild-card:hover {
+    filter: brightness(1.1);
+}
+
+.wild-card.current-player {
+    animation: activeWildCard 1s infinite !important;
+}
+
+.wild-card-prompt.kahoot-style {
+    background-color: rgba(0, 0, 0, 0.9);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.wild-card-prompt.kahoot-style.show {
+    opacity: 1;
+}
+
+.wild-card-prompt.kahoot-style .wild-card-content {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(33, 150, 243, 0.6);
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wild-card-prompt.kahoot-style.show .wild-card-content {
+    transform: scale(1);
+}
+
+.wild-card-prompt.kahoot-style .review-stats {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 1rem;
+    border-radius: 10px;
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.wild-card-prompt.kahoot-style .retry-question {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 #1B5E20;
+    margin-bottom: 1rem;
+}
+
+.wild-card-prompt.kahoot-style .retry-question:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 #1B5E20;
+}
+
+.wild-card-prompt.kahoot-style .skip-wild-card {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: none;
+    padding: 1rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.wild-card-prompt.kahoot-style .skip-wild-card:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.kahoot-header {
+    margin-bottom: 2rem;
+}
+
+.kahoot-header h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+    animation: bounce 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.kahoot-timer {
+    height: 10px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 1rem auto;
+    width: 80%;
+}
+
+.timer-bar {
+    height: 100%;
+    background: #fff;
+    width: 100%;
+    animation: timerCount 5s linear;
+}
+
+@keyframes timerCount {
+    from { width: 100%; }
+    to { width: 0%; }
+}
+
+@keyframes bounce {
+    0% { transform: scale(0.3); opacity: 0; }
+    50% { transform: scale(1.1); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+.wild-card-prompt.kahoot-style p {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+}
+
+.wild-card-prompt.kahoot-style .bonus {
+    color: #ffeb3b;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+}
+
+.wild-card-prompt.kahoot-style .wild-card-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.wild-card-prompt.kahoot-style .easy-wild-card,
+.wild-card-prompt.kahoot-style .hard-wild-card,
+.wild-card-prompt.kahoot-style .skip-wild-card {
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.wild-card-prompt.kahoot-style .easy-wild-card {
+    background-color: #4caf50;
+    color: white;
+    box-shadow: 0 4px 0 #2e7d32;
+}
+
+.wild-card-prompt.kahoot-style .hard-wild-card {
+    background-color: #f44336;
+    color: white;
+    box-shadow: 0 4px 0 #c62828;
+}
+
+.wild-card-prompt.kahoot-style .skip-wild-card {
+    background-color: #9e9e9e;
+    color: white;
+    box-shadow: 0 4px 0 #616161;
+}
+
+.wild-card-prompt.kahoot-style .easy-wild-card:hover,
+.wild-card-prompt.kahoot-style .hard-wild-card:hover,
+.wild-card-prompt.kahoot-style .skip-wild-card:hover {
+    transform: translateY(-2px);
+}
+
+.wild-card-prompt.kahoot-style .easy-wild-card:hover {
+    box-shadow: 0 6px 0 #2e7d32;
+}
+
+.wild-card-prompt.kahoot-style .hard-wild-card:hover {
+    box-shadow: 0 6px 0 #c62828;
+}
+
+.wild-card-prompt.kahoot-style .skip-wild-card:hover {
+    box-shadow: 0 6px 0 #616161;
+}
+
+.wild-card-prompt.kahoot-style button small {
+    font-size: 0.8em;
+    opacity: 0.9;
+}
+
+.player-controls {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.player {
+    background-color: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    min-width: 200px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    margin: 15% auto;
+    padding: 2rem;
+    border-radius: 10px;
+    max-width: 600px;
+    position: relative;
+}
+
+.answer-options {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.answer-button {
+    padding: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.answer-button:hover:not(:disabled) {
+    background-color: #2980b9;
+    transform: scale(1.05);
+}
+
+.answer-button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.answer-button.correct-answer-highlight {
+    background-color: #2ecc71 !important;
+    border: 2px solid #27ae60;
+    box-shadow: 0 0 15px rgba(46, 204, 113, 0.5);
+    transform: scale(1.1);
+    font-weight: bold;
+}
+
+.message-display {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 2000;
+    display: none;
+    animation: messageAnimation 2s ease-in-out;
+    min-width: 300px;
+}
+
+@keyframes messageAnimation {
+    0% { 
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    20% { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+    30% { 
+        transform: translate(-50%, -50%) scale(1);
+    }
+    70% { 
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    100% { 
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+}
+
+.correct-answer {
+    background-color: #2ecc71;
+    color: white;
+    border: 4px solid #27ae60;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.wrong-answer {
+    background-color: #e74c3c;
+    color: white;
+    border: 4px solid #c0392b;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.winner-display {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.winner-content {
+    background-color: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    animation: popIn 0.5s ease-in-out;
+}
+
+.winner-content h2 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    font-size: 2.5rem;
+}
+
+.winner-content p {
+    color: #34495e;
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.play-again-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.play-again-button:hover {
+    background-color: #2980b9;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes popIn {
+    0% { transform: scale(0.8); opacity: 0; }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+#player-count {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border: 2px solid #bdc3c7;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: white;
+}
+
+@media (max-width: 768px) {
+    .board-grid {
+        grid-template-columns: repeat(5, 1fr);
+    }
+    
+    .answer-options {
+        grid-template-columns: 1fr;
+    }
+}
+
+@keyframes correctFlash {
+    0% { background-color: #4CAF50; }
+    100% { background-color: var(--cell-bg-color); }
+}
+
+.correct-flash {
+    animation: correctFlash 1s ease;
+}
+
+.board-cell.wild-card {
+    background-color: #ff9800;
+    position: relative;
+    overflow: hidden;
+}
+
+.board-cell.wild-card::before {
+    content: "⚡";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.2em;
+    color: #fff;
+}
+
+.difficulty-prompt {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3000;
+}
+
+.difficulty-content {
+    background: linear-gradient(135deg, #9c27b0, #673ab7);
+    padding: 2rem;
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(156, 39, 176, 0.6);
+    max-width: 600px;
+    width: 90%;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.difficulty-content h3 {
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #fff;
+    text-shadow: 3px 3px 0px rgba(0,0,0,0.2);
+}
+
+.difficulty-options {
+    display: grid;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.difficulty-button {
+    padding: 1.5rem;
+    border: none;
+    border-radius: 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.difficulty-button.easy {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    box-shadow: 0 4px 0 #1B5E20;
+}
+
+.difficulty-button.medium {
+    background: linear-gradient(135deg, #FFC107, #FFA000);
+    color: white;
+    box-shadow: 0 4px 0 #FF6F00;
+}
+
+.difficulty-button.hard {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+    color: white;
+    box-shadow: 0 4px 0 #b71c1c;
+}
+
+.difficulty-button:hover {
+    transform: translateY(-2px);
+}
+
+.difficulty-button:active {
+    transform: translateY(2px);
+}
+
+.difficulty-button .difficulty-name {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.difficulty-button .move-reward {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+@media (min-width: 768px) {
+    .difficulty-options {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.press-enter-prompt {
+    margin-bottom: 1rem;
+    text-align: center;
+    width: 100%;
+}
+
+.press-enter-content {
+    background: linear-gradient(135deg, #2196F3, #1976D2);
+    padding: 1rem;
+    border-radius: 10px;
+    color: white;
+    box-shadow: 0 4px 8px rgba(33, 150, 243, 0.3);
+    display: inline-block;
+    animation: fadeInDown 0.5s ease-out;
+    margin: 0 auto;
+}
+
+.press-enter-content h3 {
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    text-shadow: 1px 1px 0px rgba(0,0,0,0.2);
+}
+
+.enter-key-animation {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-weight: bold;
+    font-size: 1.1rem;
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 10px 5px rgba(255, 255, 255, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+.question-header {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.difficulty-badge {
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: badgePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.reward-badge {
+    padding: 0.5rem 1.5rem;
+    border-radius: 20px;
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: badgePop 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.question-text {
+    font-size: 1.4rem;
+    margin: 1.5rem 0;
+    color: #2c3e50;
+    line-height: 1.6;
+}
+
+@keyframes badgePop {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.admin-panel {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: linear-gradient(135deg, #1a237e, #0d47a1);
+    padding: 1.5rem;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    animation: slideIn 0.3s ease-out;
+}
+
+.admin-content h3 {
+    color: white;
+    font-size: 1.4rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.admin-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.admin-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: none;
+    padding: 0.8rem 1.2rem;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    font-weight: bold;
+}
+
+.admin-button small {
+    font-size: 0.8em;
+    opacity: 0.8;
+    font-weight: normal;
+    margin-top: 0.2rem;
+}
+
+.admin-button:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: translateY(-2px);
+}
+
+.admin-button.move-player {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+}
+
+.admin-button.skip-turn {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+}
+
+.admin-button.force-wild {
+    background: linear-gradient(135deg, #9C27B0, #7B1FA2);
+}
+
+.admin-button.reset-game {
+    background: linear-gradient(135deg, #f44336, #d32f2f);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.wild-card-prompt.kahoot-style .wild-card-content.review-mode {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    padding: 2.5rem;
+    border-radius: 25px;
+    text-align: center;
+    color: white;
+    box-shadow: 0 0 40px rgba(255, 152, 0, 0.6);
+    max-width: 500px;
+    width: 90%;
+    transform: scale(0.8);
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.wild-card-prompt.kahoot-style .review-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+    animation: bounceIn 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.wild-card-prompt.kahoot-style .review-stats {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 1.5rem;
+    border-radius: 15px;
+    margin: 1.5rem 0;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.wild-card-prompt.kahoot-style .stats-number {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #FFF;
+    text-shadow: 2px 2px 0 rgba(0,0,0,0.2);
+}
+
+.wild-card-prompt.kahoot-style .reward-info {
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.wild-card-prompt.kahoot-style .reward-star {
+    font-size: 1.5rem;
+    animation: rotateStar 2s infinite linear;
+}
+
+.wild-card-prompt.kahoot-style .retry-question {
+    background: linear-gradient(135deg, #4CAF50, #2E7D32);
+    color: white;
+    border: none;
+    padding: 1.5rem;
+    border-radius: 15px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 4px 0 #1B5E20;
+    transform-origin: center;
+    animation: pulseButton 2s infinite;
+}
+
+.wild-card-prompt.kahoot-style .retry-question:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 0 #1B5E20;
+}
+
+@keyframes bounceIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    70% { transform: scale(0.9); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes rotateStar {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes pulseButton {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+    100% { transform: scale(1); }
+}
